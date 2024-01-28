@@ -1,40 +1,39 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace X11
+namespace X11;
+
+[StructLayout(LayoutKind.Sequential)]
+public struct XHostAddress
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public struct XHostAddress
-    {
-        public int family;
-        public int length;
-        public IntPtr address;
-    }
+    public int family;
+    public int length;
+    public IntPtr address;
+}
 
-    public partial class Xlib
-    {
-        [DllImport("libX11.so.6")]
-        public static extern Status XAddHost(IntPtr display, ref XHostAddress host);
+public partial class Xlib
+{
+    [LibraryImport("libX11")]
+    public static partial Status XAddHost(IntPtr display, ref XHostAddress host);
 
-        [DllImport("libX11.so.6")]
-        public static extern Status XAddHosts(IntPtr display, ref XHostAddress hosts, int num_hosts);
+    [LibraryImport("libX11")]
+    public static partial Status XAddHosts(IntPtr display, ref XHostAddress hosts, int num_hosts);
 
-        [DllImport("libX11.so.6")]
-        public static extern ref XHostAddress XListHosts(IntPtr display, ref int nhosts_return, ref bool state_return);
+    [DllImport("libX11")]
+    public static extern ref XHostAddress XListHosts(IntPtr display, ref int nhosts_return, ref bool state_return);
 
-        [DllImport("libX11.so.6")]
-        public static extern Status XRemoveHost(IntPtr display, ref XHostAddress host);
+    [LibraryImport("libX11")]
+    public static partial Status XRemoveHost(IntPtr display, ref XHostAddress host);
 
-        [DllImport("libX11.so.6")]
-        public static extern Status XRemoveHosts(IntPtr display, ref XHostAddress hosts, int num_hosts);
+    [LibraryImport("libX11")]
+    public static partial Status XRemoveHosts(IntPtr display, ref XHostAddress hosts, int num_hosts);
 
-        [DllImport("libX11.so.6")]
-        public static extern Status XSetAccessControl(IntPtr display, int mode);
+    [LibraryImport("libX11")]
+    public static partial Status XSetAccessControl(IntPtr display, int mode);
 
-        [DllImport("libX11.so.6")]
-        public static extern Status XEnableAccessControl(IntPtr display);
+    [LibraryImport("libX11")]
+    public static partial Status XEnableAccessControl(IntPtr display);
 
-        [DllImport("libX11.so.6")]
-        public static extern Status XDisableAccessControl(IntPtr display);
-    }
+    [LibraryImport("libX11")]
+    public static partial Status XDisableAccessControl(IntPtr display);
 }

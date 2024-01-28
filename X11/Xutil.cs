@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
-namespace X11
+namespace X11;
+
+public class Xutil
 {
-    public class Xutil
+    /// <summary>
+    /// Free a previously allocated XImage.
+    /// </summary>
+    /// <param name="XImage">The XImage structure to free.</param>
+    /// <returns>non-zero on success, zero on failure.</returns>
+    public static Status XDestroyImage(ref XImage xImage)
     {
-        /// <summary>
-        /// Free a previously allocated XImage.
-        /// </summary>
-        /// <param name="XImage">The XImage structure to free.</param>
-        /// <returns>non-zero on success, zero on failure.</returns>
-        //[DllImport("libX11.so.6")]
-        //public static extern int XDestroyImage(ref XImage XImage);
-        public static Status XDestroyImage(ref XImage xImage)
-        {
-            Marshal.FreeHGlobal(xImage.data);
-            Marshal.FreeHGlobal(xImage.obdata);
-            return 0;
-        }
+        Marshal.FreeHGlobal(xImage.data);
+        Marshal.FreeHGlobal(xImage.obdata);
+        return 0;
     }
 }

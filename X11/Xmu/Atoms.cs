@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
-namespace X11
+namespace X11;
+
+public partial class Xmu
 {
-    public partial class Xmu
-    {
-        [DllImport("libXmu.so.6")]
-        public static extern Atom XmuInternAtom(IntPtr display, IntPtr atomPtr);
+    [LibraryImport("libXmu")]
+    public static partial Atom XmuInternAtom(IntPtr display, IntPtr atomPtr);
 
-        [DllImport("libXmu.so.6")]
-        public static extern IntPtr XmuMakeAtom(String name);
-
-    }
+    [LibraryImport("libXmu", StringMarshalling = StringMarshalling.Utf8)]
+    public static partial IntPtr XmuMakeAtom(string name);
 }
