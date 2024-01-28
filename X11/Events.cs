@@ -597,6 +597,22 @@ public struct XReparentEvent
     public bool override_redirect;
 }
 
+[StructLayout(LayoutKind.Sequential, Size = (24 * sizeof(long)))]
+public struct XWindowStateEvent
+{
+    public int type;
+    public IntPtr serial;   // # of last request processed by server
+    public bool send_event; // true if this came from a SendEvent request
+    public IntPtr display;  // Display the event was read from
+    public IntPtr window;
+    public IntPtr message_type;
+    public IntPtr format;
+    public IntPtr data1;
+    public IntPtr data2;
+    public IntPtr data3;
+    public IntPtr data4;
+    public IntPtr data5;
+}
 
 public partial class Xlib
 {

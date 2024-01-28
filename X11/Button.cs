@@ -22,6 +22,8 @@ public enum Button : uint
     RIGHT = 3,
     FOUR = 4,
     FIVE = 5,
+    X1 = 8,
+    X2 = 9
 }
 
 public enum GrabMode : int
